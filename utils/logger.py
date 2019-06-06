@@ -44,5 +44,5 @@ class Logger:
         return self.logger
 
 if __name__ == "__main__":
-    logger = Logger("Logger")
-    logger.getlog()
+    logger = Logger("Logger").getlog()
+    logger.info()
