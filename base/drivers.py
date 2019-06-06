@@ -6,20 +6,18 @@
 import os
 from selenium import webdriver
 from utils.logger import Logger
-from configs.config import DRIVER_PATH
+from configs.config import CHROME_PATH,FIREFOX_PATH
 
 logger = Logger("Drivers").getlog()
-chrome_path = os.path.join(DRIVER_PATH, 'chromedriver.exe')
-firefox_path = os.path.join(DRIVER_PATH, 'geckodriver.exe')
 
 class Drivers:
     
     def __init__(self, brower):
         if brower =='Chrome' or brower =='chrome' or brower =='Ch' or brower=='ch':
-            driver = webdriver.Chrome(executable_path=chrome_path)
+            driver = webdriver.Chrome(executable_path=CHROME_PATH)
             logger.info("启动Chrome浏览器")
         elif brower =='firefox' or brower =='Firefox' or brower =='f' or brower =='F':
-            driver = webdriver.Firefox(executable_path=firefox_path)
+            driver = webdriver.Firefox(executable_path=FIREFOX_PATH)
             logger.info("启动Firefox浏览器")
         elif brower =='Ie' or brower =='ie' or brower =='i' or brower=='I':
             driver = webdriver.Ie()

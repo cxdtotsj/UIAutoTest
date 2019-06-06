@@ -13,3 +13,5 @@ if not os.path.isdir(LOG_PATH):
 
 # Driver path
 DRIVER_PATH = os.path.join(BASE_DIR, 'drivers')
+CHROME_PATH = os.path.join(DRIVER_PATH, 'chromedriver.exe')
+FIREFOX_PATH = os.path.join(DRIVER_PATH, 'geckodriver.exe')

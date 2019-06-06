@@ -14,9 +14,12 @@ class BasePage:
         else:
             self.base_url = base_url
         self.driver = driver
+        # 设定隐式等待
+        self.driver.implicitly_wait(self.timeout)
         self.timeout = 10
     
     def open(self, url=None):
+        """打开网站"""
         if url is not None:
             url = self.base_url + url
         else:
@@ -25,46 +28,46 @@ class BasePage:
         self.driver.maximize_window()
     
     def quit(self):
+        """浏览器退出"""
         self.driver.quit()
 
     def get_title(self):
+        """获取当前title"""
         return self.driver.title
 
     def get_url(self):
+        """获取当前页面的URL"""
         return self.driver.current_url
     
     def getElement(self, locator):
-        # 显示等待
-        # element = WebDriverWait(self.driver, self.timeout).until(lambda driver: driver.find_element(*locator))
-        element = self.driver.find_element(*locator)
+        """获取element"""
+        try:
+            element = self.driver.find_element(*locator)
+        except Exception as e:
+            logger.error(f"未找到元素: {locator}")
+            logger.critical(f"异常为: {e}")
         return element
     
     def getElements(self, locator):
-        # 显示等待
-        # elements = WebDriverWait(self.driver, self.timeout).until(lambda driver: driver.find_elements(*locator))
-        elements = self.driver.find_element(*locator)
+        """获取elements"""
+        try:
+            elements = self.driver.find_element(*locator)
+        except Exception as e:
+            logger.error(f"未找到元素: {locator}")
+            logger.critical(f"异常为: {e}")
         return elements
     
     def send_keys(self, locator, value):
-        try:
-            el = self.getElement(locator)
-            # 输入框存在默认的value值
-            el.send_keys(Keys.CONTROL, 'a')
-            el.send_keys(Keys.DELETE)
-            # 输入框不存在默认值
-            # el.clear()
-            el.send_keys(value)
-        except Exception as e:
-            # print(f"未找到{locator}")
-            # print(f"error is: {e}")
-            logger.error(f"未找到: {locator}")
-            logger.critical(f"异常为: {e}")
+        """文本框输入"""
+        el = self.getElement(locator)
+        # 输入框存在默认的value值
+        el.send_keys(Keys.CONTROL, 'a')
+        el.send_keys(Keys.DELETE)
+        # 输入框不存在默认值
+        # el.clear()
+
+        el.send_keys(value)
     
     def click(self, locator):
-        try:
-            self.getElement(locator).click()
-        except Exception as e:
-            # print(f"未找到{locator}")
-            # print(f"error is: {e}")
-            logger.debug(locator)
-            logger.error(e)
+        """点击按钮"""
+        self.getElement(locator).click()
