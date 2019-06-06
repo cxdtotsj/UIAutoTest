@@ -10,6 +10,7 @@ from configs.config import DRIVER_PATH
 
 logger = Logger("Drivers").getlog()
 chrome_path = os.path.join(DRIVER_PATH, 'chromedriver.exe')
+firefox_path = os.path.join(DRIVER_PATH, 'geckodriver.exe')
 
 class Drivers:
     
@@ -18,7 +19,7 @@ class Drivers:
             driver = webdriver.Chrome(executable_path=chrome_path)
             logger.info("启动Chrome浏览器")
         elif brower =='firefox' or brower =='Firefox' or brower =='f' or brower =='F':
-            driver = webdriver.Firefox()
+            driver = webdriver.Firefox(executable_path=firefox_path)
             logger.info("启动Firefox浏览器")
         elif brower =='Ie' or brower =='ie' or brower =='i' or brower=='I':
             driver = webdriver.Ie()
@@ -28,3 +29,5 @@ class Drivers:
             logger.error(brower)
         self.driver = driver
             
+    def get_driver(self):
+        return self.driver
