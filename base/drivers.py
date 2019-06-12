@@ -27,5 +27,5 @@ class Drivers:
             logger.error(brower)
         self.driver = driver
             
-    def get_driver(self):
-        return self.driver
+    # def get_driver(self):
+    #     return self.driver

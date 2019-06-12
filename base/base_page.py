@@ -1,7 +1,12 @@
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 import time
+import requests
 from utils.logger import Logger
 from configs.config import BASE_URL
 
@@ -14,9 +19,10 @@ class BasePage:
         else:
             self.base_url = base_url
         self.driver = driver
+        self.timeout = 10
         # 设定隐式等待
         self.driver.implicitly_wait(self.timeout)
-        self.timeout = 10
+
     
     def open(self, url=None):
         """打开网站"""
@@ -30,10 +36,25 @@ class BasePage:
     def quit(self):
         """浏览器退出"""
         self.driver.quit()
+        logger.info("退出浏览器成功")
+
+    def add_cookie(self):
+        """
+        适用于使用Cookie绕过登录
+        """
+        self.driver.add_cookie()
+
+    def login_token(self, token):
+        """使用token登录
+        """
+        self.driver.execute_script(f"localStorage.setItem('TOKEN', '{token}')")
+        self.driver.refresh()
 
     def get_title(self):
         """获取当前title"""
-        return self.driver.title
+        title = self.driver.title
+        logger.info(f"当前的Title为: {title}")
+        return title
 
     def get_url(self):
         """获取当前页面的URL"""
@@ -71,3 +92,10 @@ class BasePage:
     def click(self, locator):
         """点击按钮"""
         self.getElement(locator).click()
+
+if __name__ == '__main__':
+    from base.drivers import Drivers
+    driver = Drivers("chrome").driver
+    bs = BasePage(driver)
+    t = bs.get_token()
+    print(t)
