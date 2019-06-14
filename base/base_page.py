@@ -14,6 +14,8 @@ logger = Logger("BasePage").getlog()
 
 class BasePage:
     def __init__(self, driver, base_url=None):
+        if not driver:
+            raise TypeError("缺少Driver")
         if base_url is None:
             self.base_url = BASE_URL
         else:
@@ -47,7 +49,7 @@ class BasePage:
     def login_token(self, token):
         """使用token登录
         """
-        self.driver.execute_script(f"localStorage.setItem('TOKEN', '{token}')")
+        self.driver.execute_script(f'localStorage.setItem("TOKEN", "{token}")')
         self.driver.refresh()
 
     def get_title(self):

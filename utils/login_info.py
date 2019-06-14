@@ -23,5 +23,3 @@ def get_token(url=None, data=None, **kwargs):
         except (KeyError, Exception) as err:
             logger.error(f"获取Token异常: {err}")
         return token
-
-print(get_token())
