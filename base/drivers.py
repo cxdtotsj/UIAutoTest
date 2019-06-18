@@ -73,6 +73,6 @@ class Drivers:
                 "javascriptEnabled": True,
                 "webdriver.chrome.driver": CHROME_PATH
             }
-            driver = webdriver.Remote(command_executor='http://127.0.0.1:32768', desired_capabilities=chrome_capabilities, options=option)
+            driver = webdriver.Remote(command_executor='http://10.42.0.8:4444/wd/hub', desired_capabilities=chrome_capabilities, options=option)
             logger.info("remote chrome 启动成功")
             self.driver = driver
