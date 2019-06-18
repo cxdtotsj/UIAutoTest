@@ -8,7 +8,7 @@ import unittest
 
 class TestLogin(unittest.TestCase):
     def setUp(self):
-        self.driver = Drivers("chrome").driver
+        self.driver = Drivers('remote').driver
         self.login_page = LoginPage(self.driver)
         self.login_page.open("/admin/")
 

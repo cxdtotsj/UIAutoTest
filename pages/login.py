@@ -33,6 +33,8 @@ class LoginPage(BasePage):
         self.enter_user(username)
         self.enter_password(password)
         self.click_login_button()
+        # 测试
+        self.get_screenshot('remote')
     
     def login_success_user(self, username, password):
         self.login(username, password)
