@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import logging
 import time
 import os
-from configs.config import LOG_PATH
+from config import LOG_PATH
 
 class Logger:
     def __init__(self, logger):

@@ -8,7 +8,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 import requests
 from utils.logger import Logger
-from configs.config import BASE_URL
+from config import BASE_URL, SCREEN_PATH
 
 logger = Logger("BasePage").getlog()
 
@@ -94,6 +94,17 @@ class BasePage:
     def click(self, locator):
         """点击按钮"""
         self.getElement(locator).click()
+    
+    @staticmethod
+    def screen_path(name):
+        name = f'{name}{int(time.time())}'
+        screen_file = os.path.join(SCREEN_PATH, f'{name}.png')
+        return screen_file
+
+    def get_screenshot(self, name):
+        f = self.screen_path(name)
+        self.driver.get_screenshot_as_file(f)
+
 
 if __name__ == '__main__':
     from base.drivers import Drivers

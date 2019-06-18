@@ -15,3 +15,6 @@ class TestLogin(unittest.TestCase):
     def test_check_login_name(self):
         login_info = ("xdchenadmin@admin", "12345678")
         self.assertEqual(self.login_page.login_success_user(*login_info), "xdchenadmin@admin")
+    
+    def tearDown(self):
+        self.driver.quit()

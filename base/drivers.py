@@ -6,7 +6,7 @@
 import os
 from selenium import webdriver
 from utils.logger import Logger
-from configs.config import CHROME_PATH,FIREFOX_PATH
+from config import CHROME_PATH,FIREFOX_PATH
 
 logger = Logger("Drivers").getlog()
 
@@ -39,21 +39,21 @@ class Drivers:
             option.add_argument("headless")
             # 禁用GPU硬件加速，防止出现BUG
             option.add_argument("disable-gpu")
-            driver = webdriver.Chrome(executable_path=CHROME_PATH, chrome_options=option)
+            driver = webdriver.Chrome(executable_path=CHROME_PATH, options=option)
             logger.info("启动 Chrome--Headless 浏览器")
         elif brower =='firefox' or brower =='Firefox' or brower =='f' or brower =='F':
             option = webdriver.FirefoxOptions()
             option.add_argument("headless")
             # 禁用GPU硬件加速，防止出现BUG
             option.add_argument("disable-gpu")
-            driver = webdriver.Firefox(executable_path=FIREFOX_PATH, firefox_options=option)
+            driver = webdriver.Firefox(executable_path=FIREFOX_PATH, options=option)
             logger.info("启动 Firefox-Headless 浏览器")
         elif brower =='Ie' or brower =='ie' or brower =='i' or brower=='I':
             option = webdriver.IeOptions()
             option.add_argument("headless")
             # 禁用GPU硬件加速，防止出现BUG
             option.add_argument("disable-gpu")
-            driver = webdriver.Ie(ie_options=option)
+            driver = webdriver.Ie(options=option)
             logger.info("启动 IE-Headless 浏览器")
         else:
             raise NameError("只能输入firefox,Ie,Chrome")
