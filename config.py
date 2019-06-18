@@ -22,3 +22,5 @@ FIREFOX_PATH = os.path.join(DRIVER_PATH, 'geckodriver.exe')
 
 # ScreenShot path
 SCREEN_PATH = os.path.join(BASE_DIR, 'screen')
+if not os.path.isdir(SCREEN_PATH):
+    os.makedirs(SCREEN_PATH)
