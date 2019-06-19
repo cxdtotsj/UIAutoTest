@@ -3,12 +3,12 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from pages.login import LoginPage
-from base.drivers import Drivers
+from base.drivers import DriversRemote
 import unittest
 
 class TestLogin(unittest.TestCase):
     def setUp(self):
-        self.driver = Drivers('headless', 'chrome').driver
+        self.driver = DriversRemote('chrome').driver
         self.login_page = LoginPage(self.driver)
         self.login_page.open("/admin/")
 

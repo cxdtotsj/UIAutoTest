@@ -65,7 +65,7 @@ class DriversRemote:
         option = webdriver.ChromeOptions()
         option.add_argument('headless')
         option.add_argument('disable-gpu')
-        if brower == 'chrome':
+        if brower =='Chrome' or brower =='chrome' or brower =='Ch' or brower=='ch':
             chrome_capabilities = {
                 "browserName": "chrome",
                 "platform": "LINUX",
